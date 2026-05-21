@@ -1,0 +1,75 @@
+/* カレンダー全体のスタイリング */
+.simple-calendar {
+  width: 100%;
+  border-collapse: collapse; /* 枠線を1本にまとめる */
+  margin-top: 20px;
+  font-family: sans-serif;
+}
+
+/* 曜日（ヘッダー）と日付（セル）の共通設定 */
+.simple-calendar th, 
+.simple-calendar td {
+  border: 1px solid #ddd; /* 薄いグレーの枠線 */
+  padding: 8px;
+  vertical-align: top;
+  text-align: left;
+}
+
+/* 曜日（ヘッダー）の背景と文字 */
+.simple-calendar th {
+  background-color: #f5f5f5;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* 日付セルの高さとレスポンシブ対応 */
+.simple-calendar td {
+  height: 100px; /* カレンダーらしく縦幅を持たせる */
+  width: 14.28%; /* 7等分 */
+  background-color: #fff;
+}
+
+/* 今日（当日）のセルの背景色を変える */
+.simple-calendar .today {
+  background-color: #fffde7; /* ほんのり薄い黄色 */
+}
+
+/* 先月・来月の日付セルの文字を薄くする */
+.simple-calendar .prev-month,
+.simple-calendar .next-month {
+  background-color: #fafafa;
+  color: #999;
+}
+
+/* 日付の数字のスタイリング */
+.simple-calendar .day {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* カレンダー内の日記リンク（予定）のスタイリング */
+.simple-calendar td div {
+  margin-top: 4px;
+}
+
+.simple-calendar td div a {
+  display: block;
+  background-color: #e3f2fd; /* 薄いブルーのラベル風 */
+  color: #0d47a1;
+  padding: 3px 6px;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  white-space: nowrap; /* 文字が溢れたら隠す準備 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 長いタイトルは「...」にする */
+  transition: background-color 0.2s;
+}
+
+/* 日記リンクにマウスを乗せたとき */
+.simple-calendar td div a:hover {
+  background-color: #bbdefb;
+}

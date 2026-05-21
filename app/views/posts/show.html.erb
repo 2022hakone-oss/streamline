@@ -1,0 +1,41 @@
+<div style="max-width: 600px; margin: 40px auto; padding: 0 20px;">
+  <%= link_to "← 一覧に戻る", posts_path, style: "color: #666; text-decoration: none;" %>
+
+  <!-- 投稿内容 -->
+  <div style="margin-top: 20px; padding: 20px; border: 1px solid #eee; border-radius: 5px;">
+    <h1 style="margin-top: 0;"><%= @post.title %></h1>
+    <p style="white-space: pre-wrap; color: #333;"><%= @post.body %></p>
+    <small style="color: #999;"><%= @post.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+  </div>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+  <!-- コメント一覧 -->
+  <h3>コメント一覧</h3>
+  <% if @post.comments.any? %>
+    <% @post.comments.each do |comment| %>
+      <!-- データベースに保存済みのコメントのみ表示（フォーム用の空データを除外） -->
+      <% if comment.persisted? %>
+        <div style="background: #f9f9f9; padding: 15px; margin-bottom: 10px; border-radius: 4px;">
+          <p style="margin: 0; white-space: pre-wrap;"><%= comment.body %></p>
+          <small style="color: #aaa;"><%= comment.created_at.strftime("%Y-%m-%d %H:%M") %></small>
+        </div>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p style="color: #999;">まだコメントはありません。</p>
+  <% end %>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+  <!-- コメント投稿フォーム -->
+  <h3>コメントする</h3>
+  <%= form_with model: [@post, @comment], local: true do |form| %>
+    <div style="margin-bottom: 15px;">
+      <%= form.text_area :body, rows: 3, style: "width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;", placeholder: "コメントを入力してください" %>
+    </div>
+    <div>
+      <%= form.submit "コメントを送信", style: "background: #333; color: #fff; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;" %>
+    </div>
+  <% end %>
+</div>

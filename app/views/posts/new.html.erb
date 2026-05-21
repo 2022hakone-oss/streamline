@@ -1,0 +1,20 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @post, local: true do |form| %>
+  <div style="margin-bottom: 15px;">
+    <%= form.label :title, "タイトル" %><br>
+    <%= form.text_field :title, style: "width: 300px;" %>
+  </div>
+
+  <div style="margin-bottom: 15px;">
+    <%= form.label :body, "本文" %><br>
+    <%= form.text_area :body, rows: 5, style: "width: 300px;" %>
+  </div>
+
+  <div>
+    <%= form.submit "投稿する" %>
+  </div>
+<% end %>
+
+<br>
+<%= link_to "一覧に戻る", posts_path %>

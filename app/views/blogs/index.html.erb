@@ -1,0 +1,34 @@
+<style>
+  /* ここに先ほどのCSSコードをそのまま貼り付ける */
+  .simple-calendar { width: 100%; border-collapse: collapse; }
+  .simple-calendar th, .simple-calendar td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
+  .simple-calendar td { height: 100px; }
+  /* ...（中略）... */
+</style>
+<p id="notice"><%= notice %></p>
+
+<h1>自分の日記</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>時間</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <br>
+
+<%= link_to '日記をかく', new_blog_path %>
+
+<%= month_calendar events: @blogs do |date, blogs| %>
+  <%= date.day %>
+
+  <% blogs.each do |blog| %>
+    <div>
+      <%= link_to blog.title, blog %>
+    </div>
+  <% end %>
+<% end %>
+
