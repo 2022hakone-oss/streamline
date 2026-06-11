@@ -10,17 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_03_081744) do
-  create_table "article_relationships", force: :cascade do |t|
-    t.integer "article_id", null: false
-    t.integer "tag_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["article_id", "tag_id"], name: "index_article_relationships_on_article_id_and_tag_id", unique: true
-    t.index ["article_id"], name: "index_article_relationships_on_article_id"
-    t.index ["tag_id"], name: "index_article_relationships_on_tag_id"
-  end
-
+ActiveRecord::Schema[7.2].define(version: 2026_06_03_081702) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -74,8 +64,6 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_03_081744) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
-  add_foreign_key "article_relationships", "articles"
-  add_foreign_key "article_relationships", "tags"
   add_foreign_key "comments", "posts"
   add_foreign_key "taggings", "tags"
 end
