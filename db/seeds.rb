@@ -1,3 +1,4 @@
+Tag.delete_all
 Tag.create([
   { name: 'タグ1' },
   { name: 'タグ2' },
