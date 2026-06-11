@@ -20,4 +20,10 @@
     <%= form.submit %>
   </div>
 
+  
+  <div class="field">
+    <%= form.label :tag_list, "タグ（カンマ「,」区切りで複数入力可）" %>
+    <%= form.text_field :tag_list, value: (@blog.tag_list.present? ? @blog.tag_list.join(', ') : nil), class: "form-control" %>
+  </div>
+
 <% end %>

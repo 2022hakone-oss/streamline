@@ -56,3 +56,4 @@ group :test do
   gem "selenium-webdriver"
 end
 gem 'simple_calendar', '~> 2.0'
+gem 'acts-as-taggable-on'

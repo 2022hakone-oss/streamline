@@ -1,4 +1,66 @@
+<style>
+  /* 全体の背景と文字 */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 20px;
+  }
+
+  /* ブログ一件ごとのカードデザイン */
+  .card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+  }
+
+  /* タイトル */
+  .card-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  /* 本文 */
+  .card-body {
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 12px;
+  }
+
+  /* タグの見た目 */
+  .tag {
+    display: inline-block;
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+  }
+</style>
 <h1>新規投稿</h1>
+
+<%= form_for @post do |f| %>
+
+    <!-- 以下を追記 -->
+    <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+    </div>
+    <!-- ここまで -->
+
+    <%= f.submit '送信' %>
+<% end %>
 
 <%= form_with model: @post, local: true do |form| %>
   <div style="margin-bottom: 15px;">

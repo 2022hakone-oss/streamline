@@ -3,6 +3,15 @@
   <p style="margin: 5px 0 0 0; color: #aaa; font-size: 0.9rem;">シンプルで、途切れない思考の記録</p>
 </header>
 
+<%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+      <%= label_tag :tag_ids, "タグで絞り込む（複数選択可）" %><br>
+      <% Tag.all.each do |t| %>
+          <%= check_box_tag "tag_ids[]", t.id, params[:tag_ids]&.include?(t.id.to_s) %>
+          <%= t.name %><br>
+      <% end %>
+      <%= submit_tag '検索' %>
+<% end %>
+
 <div style="max-width: 600px; margin: 0 auto; padding: 0 20px;">
   <%= link_to "+ 新しく思考をストリームする", new_post_path, style: "color: #007bff; text-decoration: none; font-weight: bold;" %>
 

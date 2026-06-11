@@ -17,3 +17,10 @@
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>
+
+
+<div class="tags">
+  <% @blog.tag_list.each do |tag| %>
+    <span class="badge bg-secondary"><%= tag %></span>
+  <% end %>
+</div>

@@ -1,10 +1,3 @@
-<style>
-  /* ここに先ほどのCSSコードをそのまま貼り付ける */
-  .simple-calendar { width: 100%; border-collapse: collapse; }
-  .simple-calendar th, .simple-calendar td { border: 1px solid #ddd; padding: 8px; vertical-align: top; }
-  .simple-calendar td { height: 100px; }
-  /* ...（中略）... */
-</style>
 <p id="notice"><%= notice %></p>
 
 <h1>自分の日記</h1>
@@ -18,7 +11,20 @@
     </tr>
   </thead>
 
-  <br>
+  <tbody>
+    <% @blogs.each do |blog| %>
+      <tr>
+        <td><%= blog.title %></td>
+        <td><%= blog.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <td><%= link_to 'Show', blog %></td>
+        <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
+        <td><%= link_to 'Destroy', blog_path(blog.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "text-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
 
 <%= link_to '日記をかく', new_blog_path %>
 
@@ -31,4 +37,3 @@
     </div>
   <% end %>
 <% end %>
-
