@@ -5,7 +5,7 @@ gem "rails", "~> 7.2.3"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", ">= 1.4"
+# gem "sqlite3", ">= 1.4"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -43,6 +43,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem 'sqlite3' # 追加
+  gem 'dotenv-rails' # 追加
 end
 
 group :development do
@@ -57,3 +59,8 @@ group :test do
 end
 gem 'simple_calendar', '~> 2.0'
 gem 'acts-as-taggable-on'
+
+# PostgreSQL → 本番用
+group :production do
+  gem 'pg'
+end
