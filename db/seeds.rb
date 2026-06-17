@@ -1,8 +1,8 @@
 Tag.delete_all
 Tag.create([
-  { name: 'タグ1' },
-  { name: 'タグ2' },
-  { name: 'タグ3' },
-  { name: 'タグ4' },
-  { name: 'タグ5' }
+  { name: '日常' },
+  { name: '仕事' },
+  { name: '趣味' },
+  { name: '旅行' },
+  { name: '食事' }
 ])

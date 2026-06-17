@@ -1,1 +1,1 @@
-<%= form_with(model: @blog, local: true) do |f| %> <div> <%= f.label :title, "タイトル" %> <%= f.text_field :title %> </div> <div> <%= f.label :start_time, "時間" %> <%= f.datetime_field :start_time %> </div> <div> <%= f.submit "編集する" %> </div> <% end %>
+<%= form_with(model: @blog, local: true) do |f| %> <div> <%= f.label :title, "タイトル" %> <%= f.text_field :title %> </div> <div> <%= f.label :start_time, "時間" %> <%= f.datetime_field :start_time %> </div> <div> <%= f.submit "更新する" %> </div> <% end %>

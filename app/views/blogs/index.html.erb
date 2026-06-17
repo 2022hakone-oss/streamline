@@ -1,39 +1,57 @@
-<p id="notice"><%= notice %></p>
-
-<h1>自分の日記</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>タイトル</th>
-      <th>時間</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @blogs.each do |blog| %>
-      <tr>
-        <td><%= blog.title %></td>
-        <td><%= blog.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <td><%= link_to 'Show', blog %></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog.id) %></td>
-        <td><%= link_to 'Destroy', blog_path(blog.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "text-danger" %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to '日記をかく', new_blog_path %>
-
-<%= month_calendar events: @blogs do |date, blogs| %>
-  <%= date.day %>
-
-  <% blogs.each do |blog| %>
-    <div>
-      <%= link_to blog.title, blog %>
+<div class="container-fluid mt-4 mb-5 px-4">
+  <div class="row align-items-stretch g-4">
+    
+    <div class="col-md-7">
+      <div class="card h-100 border-0 shadow-sm rounded-4">
+        <div class="card-body p-4">
+          <%= month_calendar events: @blogs do |date, blogs| %>
+            <div class="calendar-date"><%= date.day %></div>
+            <div class="calendar-events mt-1">
+              <% blogs.each do |blog| %>
+                <div class="event-item mb-1">
+                  <%= link_to blog.title, blog_path(blog), class: "text-decoration-none" %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
-<% end %>
+
+    <div class="col-md-5">
+      <div class="card h-100 border-0 shadow-sm rounded-4 d-flex flex-column">
+        <div class="card-body p-4 d-flex flex-column">
+          <h5 class="fw-bold text-secondary mb-4">Upcoming Events</h5>
+          
+          <div class="table-responsive flex-grow-1" style="max-height: 600px; overflow-y: auto;">
+            <table class="table table-hover align-middle mb-0">
+              <thead class="table-light text-uppercase text-muted" style="position: sticky; top: 0; z-index: 1; font-size: 0.8rem;">
+                <tr>
+                  <th class="py-3 border-0 rounded-start">Title</th>
+                  <th class="py-3 border-0">Time</th>
+                  <th class="py-3 border-0 rounded-end text-end">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="border-top-0">
+                <% @blogs.each do |blog| %>
+                  <tr>
+                    <td class="py-3 fw-bold text-dark"><%= blog.title %></td>
+                    <td class="py-3 text-muted" style="font-size: 0.9rem;">
+                      <%= blog.start_time.strftime("%Y-%m-%d %H:%M") if blog.start_time %>
+                    </td>
+                    <td class="py-3 text-end text-nowrap">
+                      <%= link_to 'Show', blog_path(blog), class: "btn btn-sm btn-outline-primary rounded-pill px-3 me-1" %>
+                      <%= button_to 'Destroy', blog_path(blog), method: :delete, data: { turbo_confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger rounded-pill px-3 d-inline-block" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

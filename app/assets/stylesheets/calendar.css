@@ -1,43 +1,98 @@
-/* カレンダー全体のスタイリング */
+/* カレンダー全体をクリーンに */
 .simple-calendar {
-  width: 100%;
-  border-collapse: collapse; /* 枠線を1本にまとめる */
-  margin-top: 20px;
-  font-family: sans-serif;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* 曜日（ヘッダー）と日付（セル）の共通設定 */
-.simple-calendar th, 
-.simple-calendar td {
-  border: 1px solid #ddd; /* 薄いグレーの枠線 */
+/* 上部の「○年○月」とリンクを洗練 */
+.simple-calendar .calendar-heading {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+}
+.simple-calendar .calendar-heading a {
+  color: #666;
+  text-decoration: none;
+  padding: 0 15px;
+  transition: color 0.2s ease;
+}
+.simple-calendar .calendar-heading a:hover {
+  color: #000;
+}
+
+/* 曜日の文字（グレーでスタイリッシュに） */
+.simple-calendar thead th {
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #f0f0f0;
+  font-weight: 600;
+}
+
+/* 日付のマス */
+.simple-calendar tbody td {
+  border: 1px solid #f8f9fa; /* ほぼ見えないくらい薄い枠線 */
   padding: 8px;
   vertical-align: top;
-  text-align: left;
+  height: 90px; /* マスの高さをしっかり確保 */
+  transition: background-color 0.2s ease;
+}
+.simple-calendar tbody td:hover {
+  background-color: #fbfdff; /* マウスを乗せたらふわっと光る */
 }
 
-
-
-/* 今日（当日）のセルの背景色を変える */
-.simple-calendar .today {
-  background-color: #fffde7; /* ほんのり薄い黄色 */
-}
-
-/* 先月・来月の日付セルの文字を薄くする */
+/* 先月・来月の日付マス */
 .simple-calendar .prev-month,
 .simple-calendar .next-month {
   background-color: #fafafa;
-  color: #999;
+  color: #ccc;
 }
 
-
-
-/* カレンダー内の日記リンク（予定）のスタイリング */
-.simple-calendar td div {
-  margin-top: 4px;
+/* 今日（当日）のマスと日付の丸いハイライト */
+.simple-calendar .today {
+  background-color: #f4f8ff;
+}
+.simple-calendar .today .calendar-date {
+  display: inline-block;
+  background-color: #0d6efd; /* アクセントカラー（青） */
+  color: white;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  line-height: 26px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(13, 110, 253, 0.3);
 }
 
+/* 日付の数字 */
+.calendar-date {
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 6px;
+}
 
-/* 日記リンクにマウスを乗せたとき */
-.simple-calendar td div a:hover {
-  background-color: #bbdefb;
+/* 予定（イベント）のラベル */
+.event-item {
+  margin-bottom: 4px;
+}
+.event-item a {
+  display: block;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  background-color: #f8f9fa;
+  color: #495057;
+  border-radius: 4px;
+  border-left: 3px solid #6c757d; /* 左側にワンポイントの線 */
+  transition: all 0.2s ease;
+}
+.event-item a:hover {
+  background-color: #e9ecef;
+  color: #212529;
+  transform: translateX(2px); /* マウスを乗せたら少し右に動く */
 }

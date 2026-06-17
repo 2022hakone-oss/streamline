@@ -2,9 +2,7 @@ class Post < ApplicationRecord
   # アソシエーション
   has_many :comments, dependent: :destroy
   
-  #  ここを追加（PostとTagを、article_relationshipsテーブルを使って結びつける）
-  has_many :article_relationships, foreign_key: :article_id, dependent: :destroy
-  has_many :tags, through: :article_relationships
+  acts_as_taggable_on :tags
 
   #  ここから下は元からあったカレンダー連携の処理
   after_create :copy_to_calendar
