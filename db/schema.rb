@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_06_12_035422) do
+ActiveRecord::Schema[7.2].define(version: 2026_06_17_113123) do
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.2].define(version: 2026_06_12_035422) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
